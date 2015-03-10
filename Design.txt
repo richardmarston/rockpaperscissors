@@ -1,0 +1,29 @@
+
+
+The most important classes for the design of this project are in Game.java and TreeLogic.java. Game.java contains the class that keeps track of the scores and the number of draws. TreeLogic contains the methods for evaluating the turns when they are made. This is similar to MVC where Game is the Model, TreeLogic is the controller and View is too simplistic to have a class in this instance. It is useful to have the Controller logic seperate from the Model logic because this isolates the Controller code so that it is easy to understand, and also can be replaced very easily with an alternative, which I have provided in the AdditionLogic class. 
+
+The AdditionLogic and TreeLogic classes both perform the same task - evaluating the player's turns to see who wins. The selection is made in the constructor of the Game class. The TreeLogic class evaluates the moves one at a time, as if traversing a tree diagram of possible moves:
+
+
+         Player1..                  Player 2..
+
+                              ..chooses Rock      - Draw
+                            / 
+         ..chooses Rock     - ..chooses Paper     - Player2 wins
+        /                   \
+       /                      ..chooses Scissors  - Player1 wins
+      /                  /
+start ---..chooses Paper -  etc
+      \                  \
+       \
+        \                   /   
+         ..chooses Scissors -  etc
+                            \
+
+The main advantage of the TreeLogic class is that it is easy to understand, which means it is easy to maintain. This was the first implementation I made.
+
+The AdditionLogic class has a hashmap combining possible outcomes with functions to execute in each case (using Java's new Lambda feature!). The advantage to this approach is that less work is performed per evaluation of the player turns. For the TreeLogic algorithm, the best case scenario (assuming both players choose Rock) is two conditional operations and two function calls, and the worst case is 6 conditional operations and two calls. In the AdditionLogic class, every turn evaluation is the same: two bit shifts, an addition and a function call. Arithmetic operations are very fast, so this should always be the faster algorithm. It also has the advantage of scaling uniformly. Adding more Turn options will increase the size of the HashMap, but will not affect the speed of evaluation.
+
+For the players I have implemented the Strategy design pattern, which basically means I defined a Player interface with both RandomPlayer and PaperPlayer implement.
+
+
