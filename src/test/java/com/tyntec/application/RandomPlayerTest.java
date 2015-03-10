@@ -16,7 +16,7 @@ public class RandomPlayerTest {
      *  below this result does not necessarily suggest a problem.
      */
     private final int numberOfIterations = 1000;
-    private final int expectedMinimumHits = 300;
+    private final int expectedMinimumHits = 275;
     @Test
     public void test1000Moves() {
         RandomPlayer player = new RandomPlayer();
