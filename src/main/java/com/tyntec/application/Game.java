@@ -2,6 +2,7 @@ package com.tyntec.application;
 
 class Game {
 
+    // See also the list of player moves in AdditionLogic.java
     public enum Turn { Rock, Paper, Scissors };
 
     private int Player1Score;
