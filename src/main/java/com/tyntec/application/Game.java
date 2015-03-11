@@ -1,7 +1,5 @@
 package com.tyntec.application;
 
-import static com.tyntec.application.Game.Turn;
-
 class Game {
 
     public enum Turn { Rock, Paper, Scissors };
